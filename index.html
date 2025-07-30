@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#667eea">
+    <title>人生模拟器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 开始界面 -->
+        <div id="start-screen" class="screen active">
+            <h1>同性恋模拟器</h1>
+            <p>选择你的性别开始人生之旅</p>
+            <div class="gender-selection">
+                <button class="gender-btn" data-gender="male">👨 人家是小狐娘</button>
+                <button class="gender-btn" data-gender="female">👩 铁t救火</button>
+                <button class="gender-btn" data-gender="quit">😔 本可素直男惹</button>
+            </div>
+        </div>
+
+        <!-- 游戏主界面 -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="time-info">
+                    <span id="current-year">第1年</span>
+                    <span id="current-month">第1个月</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="time-progress" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="character-section">
+                <div class="character">
+                    <div id="character-avatar">👤</div>
+                    <div class="character-info">
+                        <span id="character-gender"></span>
+                        <span id="character-age">0岁</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stat-item">
+                    <span class="stat-label">健康</span>
+                    <div class="stat-bar">
+                        <div id="health-bar" class="stat-fill health"></div>
+                    </div>
+                    <span id="health-value">100</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">快乐</span>
+                    <div class="stat-bar">
+                        <div id="happiness-bar" class="stat-fill happiness"></div>
+                    </div>
+                    <span id="happiness-value">100</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">财富</span>
+                    <div class="stat-bar">
+                        <div id="wealth-bar" class="stat-fill wealth"></div>
+                    </div>
+                    <span id="wealth-value">100</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">魅力</span>
+                    <div class="stat-bar">
+                        <div id="charm-bar" class="stat-fill charm"></div>
+                    </div>
+                    <span id="charm-value">100</span>
+                </div>
+            </div>
+
+            <div class="event-section">
+                <div id="event-display" class="event-display">
+                    <p>人生开始了...</p>
+                </div>
+                <div id="event-choices" class="event-choices" style="display: none;">
+                    <!-- 选项按钮将在这里动态生成 -->
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <button id="settings-btn" class="settings-btn">⚙️ 设置</button>
+            </div>
+        </div>
+
+        <!-- 设置界面 -->
+        <div id="settings-screen" class="screen">
+            <h2>游戏设置</h2>
+            <div class="setting-item">
+                <label for="event-probability">随机事件概率 (%)</label>
+                <input type="range" id="event-probability" min="10" max="50" value="30">
+                <span id="probability-value">30%</span>
+            </div>
+            <div class="setting-item">
+                <label for="game-speed">游戏速度</label>
+                <select id="game-speed">
+                    <option value="5000">正常 (5秒/月)</option>
+                    <option value="2000">快速 (2秒/月)</option>
+                    <option value="10000">慢速 (10秒/月)</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="bgm-volume">背景音乐音量</label>
+                <input type="range" id="bgm-volume" min="0" max="100" value="50">
+                <span id="bgm-volume-value">50%</span>
+            </div>
+            <div class="setting-item">
+                <button id="bgm-toggle" class="bgm-btn">🔊 音乐: 开启</button>
+            </div>
+            <button id="back-to-game" class="back-btn">返回游戏</button>
+        </div>
+
+        <!-- 游戏结束界面 -->
+        <div id="end-screen" class="screen">
+            <h2>人生结束</h2>
+            <div class="final-stats">
+                <p>最终年龄: <span id="final-age">10岁</span></p>
+                <p>最终健康: <span id="final-health">100</span></p>
+                <p>最终快乐: <span id="final-happiness">100</span></p>
+                <p>最终财富: <span id="final-wealth">100</span></p>
+                <p>最终魅力: <span id="final-charm">100</span></p>
+            </div>
+            <button id="restart-btn" class="restart-btn">重新开始</button>
+        </div>
+    </div>
+
+    <!-- 背景音乐 -->
+    <audio id="bgm" loop>
+        <source src="bgm.mp3" type="audio/mpeg">
+        <source src="bgm.ogg" type="audio/ogg">
+        您的浏览器不支持音频播放。
+    </audio>
+    
+    <!-- 音效 -->
+    <audio id="event-sound">
+        <source src="event.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
